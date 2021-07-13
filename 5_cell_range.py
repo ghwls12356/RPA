@@ -44,6 +44,31 @@ for rows in row_range: # 한줄씩
         #print(xy[1], end=" ") # 1 == print(cell.coordinate, end=" ") , 슬라이싱 예시
     print()
 
+# 전체 rows
+#print(tuple(ws.rows)) # 튜플 형태로 가져와야 함 - 정보를 한 줄(행) 씩 가져옴
+for row in tuple(ws.rows): 
+    print(row)              # 한 바퀴씩 돌며 한 줄 씩 출력
+    # print(row[1].value) # 특정 인덱스에 있는 값 출력
+for row in ws.iter_rows(): # 전체 row 한 줄(행)씩 다른방법
+    print(row)
+    # print(row[n].value) # n번쨰 인덱스에 있는 행만 출력
+
+
+# 전체 columns
+#print(tuple(ws.columns)) # 튜플 형태로 가져와야 함 , 정보를 한 열 씩 가져옴
+for column in tuple(ws.columns): 
+    print(column)               # 한 열씩 가져옴
+    # print(column[0].value)  # 특정 인덱스에 있는 값 출력
+for column in ws.iter_cols():
+    print(column)
+    # print(column[n].value) # n번째 인덱스에 있는  열만 출력
+
+# 2번째 줄부터 11번째 줄까지, 2번째 열부터 3번째 열까지 출력
+for row in ws.iter_rows(min_row=2, max_row=11, min_col= 2, max_col= 3): # 수학, 영어 점수를 목록값만 빼고 가져옴 # iter_rows좌우좌우
+    print(row[0].value, row[1].value) # 수학, 영어
+
+for col in ws.iter_cols(min_row=1, max_row= 5, min_col=1, max_col=3): # iter_cols상하상하 ,()안의 값은 범위 지정할 때 쓰임
+    print(col)
 
 
 wb.save("sample.xlsx")
